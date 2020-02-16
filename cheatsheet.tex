@@ -1,0 +1,212 @@
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[11pt]{scrartcl} % 11pt font size
+
+\usepackage[utf8]{inputenc} % Required for inputting international characters
+\usepackage[T1]{fontenc} % Output font encoding for international characters
+
+\usepackage[margin=0pt, landscape]{geometry} % Page margins and orientation
+
+\usepackage{graphicx} % Required for including images
+
+\usepackage{color} % Required for color customization
+\definecolor{mygray}{gray}{.75} % Custom color
+
+\usepackage[ % This block contains information used to annotate the PDF
+	colorlinks=false, 
+	pdftitle={Cheatsheet}, 
+	pdfauthor={John Smith}, 
+	pdfsubject={Compilation of useful shortcuts}, 
+	pdfkeywords={Random Software, Cheatsheet}
+]{hyperref}
+
+\setlength{\unitlength}{1mm} % Set the length that numerical units are measured in
+\setlength{\parindent}{0pt} % Stop paragraph indentation
+
+\renewcommand{\dots}{\ \dotfill{}\ } % Fills in the right amount of dots
+\newcommand{\command}[2]{#1~\dotfill{}~#2\\} % Custom command for adding a shorcut
+\newcommand{\sectiontitle}[1]{\paragraph{#1} \ \\} % Custom command for subsection titles
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}		\begin{picture}(297,210)
+	\put(5,200){		\begin{minipage}[t]{70mm}
+		\sectiontitle{Expected Value}
+		$E[c] = c$\\
+		$E[cX] = cE[X]$\\
+		$E[X_1 + X_2 ... X_n] = \Sigma E[X_i]$\\
+		\\
+		$E[g(X)] = \Sigma g(x)\cdot pmf(x)$\\
+		$E[g(X)] = \int g(x)\cdot pdf(x)dx$\\
+		\\
+		$E[g(X, Y)] = \Sigma\Sigma g(x, y)\cdot pmf(x, y)$\\
+		$E[g(X, Y)] = \int\int g(x, y)\cdot pdf(x, y) dx dy$\\
+		\\
+		Given $X_1, ..., X_n$ are independent then\\ $E[(X_1)(...)(E_n)] = (E[X_1])(...)(E[X_n])$ \\
+		
+		\sectiontitle{Marginal}
+		$f_x = \int f(X, Y) dy$\\
+		$f(X | Y)  = \frac{f(X, Y)}{f_y(Y)}$\\
+		Given X and Y are independent then\\ ...$f(X, Y) = f_x(X)\cdot f_y(Y)$\\
+		\sectiontitle{Chebyshev's inequality}
+		Within k Standard Deviations\\there is at least $1-\frac{1}{k^2}$ of the data\\
+	
+		\sectiontitle{Conditional Expectation}
+		$E[g(X) | Y=y)] = \int g(X)f(X|Y)dx$\\
+		$E[g(X) | Y=y)] = \Sigma g(X)f(X|Y)$\\
+		
+		\sectiontitle{Sampling Distribution}
+		$\bar Y = \frac{1}{n}\Sigma y_i$\\
+		$E[\bar Y] = \mu$ and 
+		$V[\bar Y] = \frac{\sigma^2}{n}$\\
+		If Y's are taken from a normal, then $\bar{Y}$ is normal.
+		Else n must be large to be normal\\
+		$Z = \frac{\bar{Y} - \mu_{\bar{Y}}}{\frac{\sigma_{\bar{Y}}}{\sqrt{n}}} = \sqrt{n}(\frac{\bar{Y} - \mu}{\sigma})$\\
+		
+		\sectiontitle{Bias}
+		$B[\hat{\theta}] = E[\hat\theta] - \theta$\\
+		$MSE[\hat{\theta}] = E[(\hat{\theta} - \theta)^2]$\\
+		$MSE[\hat{\theta}] = V[\hat{\theta}] - B[\hat{\theta}]^2$\\
+		$error = \int_{\theta-b}^{\theta+b}pmf(\hat\theta)d\hat{\theta}$ which is then bounded using distributions
+		
+	\end{minipage}		}
+
+	\put(76,200){		\begin{minipage}[t]{70mm}
+		\sectiontitle{Variance}
+		$Var[c] = 0$\\
+		$Var[cX] = c^2Var[X]$\\
+		$Var[X_1 + X_2 ... X_n] = \Sigma\Sigma Cov(X_i, X_j)$\\
+		$.... = \Sigma Var[X_i] + 2(\Sigma\Sigma Cov(X_i , X_j)$\\
+		If $X_1, ..., X_n$ are independent then\\
+		$Var[X_1, ..., X_n] = \Sigma Var[X_i]$\\
+		\\
+		$Var = \sigma^2 = E[X^2] - E[X]^2$\\
+		$SE = $ Standard Error $ = \sqrt{Var}$\\
+		
+		\sectiontitle{CoVariance}
+		$cov(X, Y)=E[(X-E[X])(Y-E[Y])]$\\
+		.....$ = E[XY]-E[X]E[Y]$\\
+		It follows that cov(X, X)=Var(X)\\
+		And that if X and Y are independent $cov(X, Y)$ = 0\\
+		
+		\sectiontitle{Correlation}
+		$\rho=\frac{cov(X, Y)}{\sqrt{var(X)\cdot var(Y)}}$ and $-1\leq\rho\leq1$\\
+		
+		\sectiontitle{Order Statistics}
+		\small
+		If $Y_1 ... Y_n$ iid with CDF F and pdf f then\\
+		$g_{(k)} = \frac{n!}{(k-1)!(n-k)!} F(y)^{k-1} (1-F(y))^{n-k} f(y)$\\
+		\normalfont
+		$G_{(n)}(y) = P(.....Y_{n-1} \le y, Y_n\le y)$\\
+		$G_{(1)}(y) = P(y\le Y_1 , y \le Y_2.....)$\\
+		\\
+		$P(Y \le y) = CDF(y)$\\
+		$P(y \le Y) = 1-CDF(y)$\\
+		
+		\sectiontitle{Method of Moments}
+		$E[Y^1] = \mu_1 \approx \hat{\mu}_1 = E[Y'^1] = f_1(Y_1...Y_n)$\\
+		$E[Y^2] = \mu_2 \approx \hat{\mu}_2 = E[Y'^2] = f_1(Y_1...Y_n)$\\
+		Y is the distribution Y' is the sample.
+		Show that you can write the samples in terms of the distribution.
+		
+	\end{minipage}			}
+
+	\put(150,165){			\begin{minipage}[t]{70mm}
+		\begin{tabular}{c c c c c}
+			Type & pmf & mean & variance & mgf\\ \hline\hline
+			Binomial &
+				${n \choose x}p^x (1-p)^{n-x}$ &
+				$np$ &
+				$np(1-p)$ &
+				$((1-p)+pe^t)^n$\\ \hline
+			Negative &
+				${Y-1 \choose r-1} p^r (1-p)^{Y-r}$ &
+				$\frac{r(1-p)}{p}$ &
+				$\frac{r(1-p)}{p^2}$ &
+				$\left(\frac{P}{1-(1-p)e^t}\right)^r$\\ \hline
+			Hyper &
+				$\frac{{{y \choose r}}{{N-r \choose n-y}}}{{N \choose n}}$ &
+				$\frac{nr}{N}$ &
+				$(\frac{nr}{N})(\frac{(N-r)(N-n)}{N(N-1)})$ &
+				$DNE$\\ \hline
+			Geometric &
+				$p(1-p)^{x-1}$ &
+				$\frac{1}{p}$ &
+				$\frac{1-p}{p^2}$ &
+				$\frac{pe^t}{1-(1-p)e^t}$\\ \hline
+			Poisson &
+				$e^{-\lambda} \frac{\lambda^y}{y!}$ &
+				$\lambda$ &
+				$\lambda$ &
+				$e^{\lambda(e^t-1)}$ \\ \hline\hline
+			
+			Type & pdf & mean & variance & mgf\\ \hline\hline
+			Chi-Square &
+				$\frac{y^{\frac{v}{2}-1}e^{\frac{-y}{2}}}{2^{v/2}\Gamma(\frac{v}{2})}$ &
+				$v$ &
+				$2v$ &
+				$(1-2t)^{\frac{-v}{2}}$ \\ \hline
+			Exponential &
+				$\frac{1}{\theta}e^{\frac{-x}{\theta}}$ &
+				$\theta$ &
+				$\theta^2$ &
+				$\frac{1}{1-\theta t}$ \\ \hline
+			Gamma &
+				$\frac{1}{\Gamma(\alpha)\beta^\alpha}x^{\alpha-1}e^{\frac{-x}{\beta}}$ &
+				$\alpha\beta$ &
+				$\alpha\beta^2$ &
+				$\left(\frac{1}{1-\beta t}\right)^\alpha$\\ \hline
+			Uniform &
+				$\frac{1}{b-a}$ &
+				$\frac{a+b}{2}$ &
+				$\frac{(b-a)^2}{12}$ &
+				$\frac{e^{bt}-e^{at}}{(b-a)t}$\\ \hline
+			Normal &
+				$\frac{1}{\sigma\sqrt{2\pi}}e^{\frac{-(x-\mu)^2}{2\sigma^2}}$ &
+				$\mu$ &
+				$\sigma^2$ &
+				$e^{\mu t + \frac{\sigma^2t^2}{2}}$\\
+		\end{tabular}
+	\end{minipage}			}
+
+	\put(140,115){  		\begin{minipage}[t]{40mm}
+		$S_p^2 = \frac{(n_1-1)S_1^2 + (n_2-1)S_2^2}{n_1 + n_2 - 2}$\\
+		$n_1 + n_n - 2$\\ degrees of freedom
+	\end{minipage}			}
+
+	\put(180,105){			\begin{minipage}[t]{70mm}
+		\begin{tabular}{c c c c c}
+			Parameter & Sample Size & $\hat{\theta}$ & $E[\hat\theta]$ & SE\\ \hline\hline
+			$\mu$ &
+			$n$ &
+			$\bar Y$ &
+			$\mu$ &
+			$\frac{\sigma}{\sqrt{n}}$\\ \hline
+			
+			$p$ &
+			$n$ &
+			$\hat{p} = \frac{Y}{n}$ &
+			$p$ &
+			$\sqrt{\frac{pq}{n}}$\\ \hline
+			
+			$n_1 + n_2$ &
+			$n_1 + n_2$ &
+			$\bar{Y_1} - \bar{Y_2}$ &
+			$\mu_1 - \mu_2$ &
+			$\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}$\\ \hline
+			
+			$p_1 - p_2$ &
+			$n_1 + n_2$ &
+			$\hat{p_1} -\hat{p_2}$ &
+			$p_1 $ &
+			$\sqrt{\frac{p_1 q_1}{n_1} + \frac{p_2 q_2}{n_2}}$\\
+		\end{tabular}
+	\end{minipage}			}
+
+
+
+\end{picture} % End the container for the entire page
+\end{document}
+
